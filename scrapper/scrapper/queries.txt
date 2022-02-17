@@ -1,0 +1,106 @@
+
+==========================================================================TASK 2==============================================================
+
+
+
+
+1. How many Products did you scrape?
+
+db.flipkart.find().count()
+
+{% comment %} This is to find the number of products I have scraped. {% endcomment %}
+========================================================================================================================
+
+
+2. How many products have a discount on them?
+
+discount = FALSE
+discounted = 0
+
+
+def discounted_item():     # to check if items have discount on them
+    if('original_price' != 'sale_price'):
+    {
+        discount == TRUE
+        discounted += 1
+
+    }
+
+
+discounted = db.collection.find(discounted_item)
+print("Total no. of items having discount on them are :", discounted)
+
+{% comment %} This is the code for the number of products which have discount. {% endcomment %}
+
+==========================================================================================================================
+
+
+
+
+3. How many Topwear products don't have any discount on them?
+
+
+
+
+================================================================================================================================
+
+4. How many unique brands are present in the collection?
+
+db.flipkart.distinct("brand")
+
+{% comment %} This is the query for the unique brands present in the collection. {% endcomment %}
+===============================================================================================================================
+
+
+5. What is the count of discounted products for each brand?
+
+
+
+
+================================================================================================================================
+
+
+6. How many products have shirt in their name?
+
+db.flipkart.createIndex({"name": "text"})
+
+db.flipkart.find({$text: {$search: "shirt"}})
+
+{% comment %} Query for the list of products which have shirt in their name. {% endcomment %}
+====================================================================================================================================
+
+
+7. How many products have offer price greater than 300?
+
+db.flipkart.find({"original_price" : {$gt: "$300"}})
+
+
+{% comment %} List of products which have offer price greater than 300. {% endcomment %}
+====================================================================================================================================
+
+8. How many products have discount % greater than 30%?
+
+
+
+======================================================================================================================================
+
+9. How many  footwear products have a 50% discount?
+
+
+
+======================================================================================================================================
+10. Which brand in Topwear section is selling the most number of products?
+
+db.flipkart.aggregate(
+    [ 
+        { "$group":  { "_id": "$brand", "count": { "$sum": 1 } } }
+    ],  function(err, results) {
+            db.flipkart.find({results:"Topwear"})
+        }
+)
+
+{% comment %} Brand which is selling the most number of products in topwear. {% endcomment %}
+========================================================================================================================================
+
+
+
